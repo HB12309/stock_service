@@ -1,4 +1,4 @@
-package cn.ebing.center.discovery;
+package cn.ebing.stock.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
