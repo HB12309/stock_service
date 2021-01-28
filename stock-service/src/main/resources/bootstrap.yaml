@@ -1,0 +1,79 @@
+eureka:
+  instance:
+    namespace: service_discovery_center
+    appname: ${eureka.instance.namespace}
+  client:
+    healthcheck:
+      enabled: true
+spring:
+  application:
+    name: ${eureka.instance.namespace}
+  http:
+    multipart:
+      enabled: false
+  mvc:
+    favicon:
+      enabled: false
+  jackson:
+    default-property-inclusion: non_null
+endpoints:
+  shutdown:
+    enabled: false
+  heapdump:
+    enabled: false
+  dump:
+    enabled: false
+  trace:
+    enabled: false
+  env:
+    enabled: false
+    post:
+      enabled: false
+  auditevents:
+    enabled: false
+  autoconfig:
+    enabled: false
+  flyway:
+    enabled: false
+  configprops:
+    enabled: false
+  mappings:
+    enabled: false
+  beans:
+    enabled: false
+  loggers:
+    enabled: false
+  metrics:
+    enabled: false
+  docs:
+    enabled: false
+    curies:
+      enabled: false
+  logfile:
+    enabled: false
+  jolokia:
+    enabled: false
+  hypermedia:
+    enabled: false
+  liquibase:
+    enabled: false
+  jmx:
+    enabled: false
+  actuator:
+    enabled: false
+  features:
+    enabled: false
+  pause:
+    enabled: false
+  refresh:
+    enabled: false
+  restart:
+    enabled: false
+    pause-endpoint:
+      enabled: false
+    resume-endpoint:
+      enabled: false
+  routes:
+    enabled: false
+  resume:
+    enabled: false

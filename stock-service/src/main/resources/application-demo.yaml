@@ -1,0 +1,14 @@
+server:
+  port: # Eureka Server端口号 8761
+security:
+  user:
+    name: # Eureka Server用户名
+    password: # Eureka Server密码
+eureka:
+  instance:
+    hostname: # Eureka Server Host
+  client:
+    fetch-registry: # 如果有等价集群，则删除此行，否则使用 false
+    register-with-eureka: # 如果有等价集群，则删除此行，否则使用 false
+    service-url:
+      defaultZone: # 除非有等价集群，否则直接 http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/

@@ -1,0 +1,96 @@
+buildscript {
+    ext {
+        jdkBuildVersion = '1.8'
+        springBootVersion = "1.5.9.RELEASE"
+        logbackVersion = '1.2.3'
+        swaggerVersion = '2.9.2'
+        flyway_version = '5.0.7'
+        project_version = "1.0.3"
+        jacksonVersion = '2.9.2'
+        pageVersion='1.2.0'
+        lombokVersion = '1.18.2'
+    }
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+        maven { url "https://plugins.gradle.org/m2/"}
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+        maven { url "https://plugins.gradle.org/m2/"}
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+
+    buildscript {
+        repositories {
+            maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+            maven { url 'https://repo.spring.io/libs-snapshot' }
+            maven { url "https://plugins.gradle.org/m2/"}
+            jcenter()
+            mavenLocal()
+            mavenCentral()
+        }
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'maven-publish'
+    apply plugin: 'application'
+
+    mainClassName = 'cn.ebing.stock.service.StockServiceApplication'
+
+    group = 'cn.ebing'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = jdkBuildVersion
+    targetCompatibility = jdkBuildVersion
+
+    jar {
+        baseName = 'stock-service'
+        version = 'gradle'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Edgware.SR5"
+        }
+    }
+
+    compileJava.dependsOn(processResources)
+
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            switch (it.requested.name) {
+                case "jackson-annotations":
+                    it.useTarget "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+                    break
+                case "jackson-core":
+                    it.useTarget "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+                    break
+                case "jackson-databind":
+                    it.useTarget "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+                    break
+                case "logback-core":
+                    it.useTarget "ch.qos.logback:logback-core:$logbackVersion"
+                    break
+                case "logback-classic":
+                    it.useTarget "ch.qos.logback:logback-classic:$logbackVersion"
+                    break
+            }
+        }
+    }
+}
