@@ -1,9 +1,9 @@
 package cn.ebing.stock.service;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 
-@SpringBootApplication
+@SpringCloudApplication
 public class StockServiceApplication {
     public static void main(String[] args) {
         System.out.println("===== StockServiceApplication 准备启动 =====");
